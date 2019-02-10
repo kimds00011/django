@@ -1,0 +1,9 @@
+<!-- blog/templates/blog/post_form.html -->
+<!--post_form에 enctype 추가 하여 서버로 이미지 전달  -->
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" />
+</form>

@@ -1,0 +1,57 @@
+{% extends "blog/layout.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Music <sup>by daniel</sup></h1>
+            <p>음악</p>
+            <p>
+                <a class="btn btn-lg btn-primary" href="https://www.facebook.com/hippytokki/">
+                        Music 
+                    </a>
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-info">
+                    <ul>
+                    <li>Beta Test</li>
+                    </ul>
+                </div>
+
+                <a href="{%url "blog:post_new" %}" class="btn btn-primary pull-right"> New Post</a>
+
+                <p>
+                    <form action="" method="get">
+                        <input type="text" name="q" value="{{ q }}" />
+                        <input type="submit" value="검색" class="btn btn-primary" />
+                    </form>
+                </p>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>title</th>
+                            <th>author</th>
+                            <th>updated_at</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in post_list %}
+                            <tr>
+                                <td>{{ post.id }}</td>
+                                <td><a href="{% url "blog:post_detail" post.id %}">{{ post.title }}</a></td>
+                                <td><small>by {{ post.author }}</small></td>
+                                <td><small>at {{ post.updated_at }}</small></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

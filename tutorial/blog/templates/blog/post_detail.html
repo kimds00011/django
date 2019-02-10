@@ -1,0 +1,55 @@
+{% extends "blog/layout.html" %}
+{% load imagekit %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ post.title }}</h2>
+
+                {%if post.photo%}
+                {#<img src="/media/{{post.photo}}" stlye="max-width: 100%;" />#}
+                {#<img src="{{post.photo.url}}" stlye="max-width: 100%;" />#}
+                {% comment %} 방법1 {% endcomment %}
+                {#<img src="{{post.photo_thumbnail.url}}" stlye="max-width: 100%;" />#}
+                {% comment %} 방법2 {% endcomment %}
+                <img src="{{post.photo.url}}" stlye="max-width: 100%;" />
+                    {%thumbnail "100x100" post.photo%}
+                    
+                    {%thumbnail "100x100" post.photo as thumb%}
+                    <img src="{{thumb.url}}" width="{{thumb.width}}" height="{{thumb.height}}"/>
+
+                    {%thumbnail "100x100" post.photo -- stlye="" onclick="" class=""%}
+                    
+                <!--게시글에 이미지 추가 -->
+                {% endif %}
+                
+
+
+                {{ post.content|linebreaks }}
+
+                <hr/>
+
+                <h3>Comments</h3>
+
+                <ul>
+                {% for comment in post.comment_set.all %}
+                    <li>
+                        {{ comment.message }}
+                        <small>by {{ comment.author }}</small>
+                        <small>at {{ comment.updated_at }}</small>kk
+                    </li>
+                {% endfor %}
+                </ul>
+
+                <hr/>
+                <a href="{% url "blog:post_list" %}" class="btn btn-primary">글 목록</a>
+                <a href="{% url "blog:post_edit" post.id %}" class="btn btn-primary">수정</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

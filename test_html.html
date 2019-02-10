@@ -1,0 +1,27 @@
+POST 방식
+<form action="" method="post">
+    <input type="text" name="title" />
+    <textarea name="content" />
+    <input type="text" name="latlng" />
+</form>
+
+
+POST방식에서 GET 인자 이용
+<form action="?Lang=ko" method="post">
+    <input type="text" name="title" />
+    <textarea name="content" />
+    <input type="text" name="latlng" />
+</form>
+
+
+<form method="GET" action="">
+    <input type="text" name="title" />
+    <textarea name="content"></textarea>
+    <input type="file" name="photo" />
+    <input type="submit" value="저장"/>
+</form>
+
+
+python에서는 하나만 남지만 사용 하지만  
+웹에서는 같은 name에 대해서 모두 지원 하기 위해서 multiValueDict 를 사용 함 
+http://localhost:8000/say_hello/?name=Tom&name=Steve&name=John
